@@ -154,7 +154,7 @@ if (x[1]==x[5]) {
   hand="Yahtzee"
 } else if (x[1]==x[4] | x[2]==x[5]) {
   hand="4ofKind"
-} else if (x[1] == x[3] && x[4] != x[5] || x[2] != x[4] || x[3] == x[5] && x1 != x2) {
+} else if (x[1] == x[3] && x[4] != x[5] || x[2] == x[4] || x[3] == x[5] && x[1] != x[2]) {
   hand = "3ofKind"
 } else if (x[1] == x[3] && x[4] == x[5] || x[3] == x[5] && x[1] == x[2]) {
   hand = "FullHouse"
