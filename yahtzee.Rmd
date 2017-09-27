@@ -70,7 +70,7 @@ x
 ```
 We will need to sort this. The following function is called a *Bubble Sort*. Comment on every part of the code to explain what it is doing:
 
-```
+```{r}
 bubble_sort = function(vec) {
     no_passes = 0
     while(1) {
@@ -94,7 +94,9 @@ bubble_sort = function(vec) {
 
 Apply Bubble sort to each row of your matrix to sort the data. (You may wish to do this within your loop so the rows are sorted as they get added.) 
 
+```{r}
 
+```
 
 ### Problem 4: Looking for Yahtzee Combinations
 
