@@ -92,6 +92,23 @@ bubble_sort = function(vec) {
     vec
 }
 ```
+```{r}
+bubblesort <- function(x) {
+# x is initially the input vector and will be
+# modified to form the output
+if (length(x) < 2) return (x)
+# last is the last element to compare with
+for(last in length(x):2) {
+for(first in 1:(last - 1)) {
+if(x[first] > x[first + 1]) { # swap the pair
+save <- x[first]
+x[first] <- x[first + 1]
+x[first + 1] <- save
+}
+}
+}
+return (x)
+}
 ```
 
 ### Problem 3: Applying the Sort with dice rolls
@@ -130,20 +147,6 @@ These would all be correctly identified.  But what about:
 
 As you can see, these would all fulfill the first and third conditions proposed above, but they should be classified as Full House.  Therefore  we also need to check for a Full House in these cases.  The following identification routine checks for these types of Hands. At each stage, we have to be very careful that all possibilities are accounted for.
 
-```
-x <- bubble_sort(sample(1:6, size=5, replace=T))
-
-if (x[1]=x[5]){
-  hand="Yahtzee"
-} else if (x[1]=x[4] | x[2]=x[5]) {
-    hand="4ofKind"
-} 
-
-...
-
- } else 
- hand="Chance"
-```
 
 The above code lays this out for Yahtzee and 4 of a kind. Find statements that work for the rest. Make sets of x and test them to make sure they work.
 
@@ -158,8 +161,14 @@ if (x[1]==x[5]) {
   hand = "3ofKind"
 } else if (x[1] == x[3] && x[4] == x[5] || x[3] == x[5] && x[1] == x[2]) {
   hand = "FullHouse"
+} else if(x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 &&x[4]==x[5]-1) {
+   hand<-"Full straight"
+ } else if (x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 ||
+            x[2]==x[3]-1 && x[3]==x[4]-1 && x[4]==x[5]-1) {
+   hand<-"Small straight"
 } else 
-  hand="Chance"
+ hand<-"Chance"
+
 ```
 
 
