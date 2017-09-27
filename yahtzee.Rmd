@@ -147,6 +147,20 @@ if (x[1]=x[5]){
 
 The above code lays this out for Yahtzee and 4 of a kind. Find statements that work for the rest. Make sets of x and test them to make sure they work.
 
+```{r}
+x <- bubble_sort(sample(1:6, size=5, replace=T))
+
+if (x[1]==x[5]) {
+  hand="Yahtzee"
+} else if (x[1]==x[4] | x[2]==x[5]) {
+  hand="4ofKind"
+} else if (x[1] == x[3] && x[4] != x[5] || x[2] != x[4] || x[3] == x[5] && x1 != x2) {
+  hand = "3ofKind"
+} else if (x[1] == x[3] && x[4] == x[5] || x[3] == x[5] && x[1] == x[2]) {
+  hand = "FullHouse"
+} else 
+  hand="Chance"
+```
 
 
 ### Problem 5: Simulating 100,000 dice rolls
