@@ -155,21 +155,28 @@ The above code lays this out for Yahtzee and 4 of a kind. Find statements that w
 ```{r}
 x <- bubble_sort(sample(1:6, size=5, replace=T))
 
-if (x[1]==x[5]) {
-  hand="Yahtzee"
-} else if (x[1]==x[4] | x[2]==x[5]) {
-  hand="4ofKind"
-} else if (x[1] == x[3] && x[4] != x[5] || x[2] == x[4] || x[3] == x[5] && x[1] != x[2]) {
-  hand = "3ofKind"
-} else if (x[1] == x[3] && x[4] == x[5] || x[3] == x[5] && x[1] == x[2]) {
-  hand = "FullHouse"
-} else if(x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 &&x[4]==x[5]-1) {
-   hand<-"Full straight"
- } else if (x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 ||
-            x[2]==x[3]-1 && x[3]==x[4]-1 && x[4]==x[5]-1) {
-   hand<-"Small straight"
-} else 
- hand<-"Chance"
+classify=function(x){
+  x=bubblesort(x)
+  if(length(x)!=5){
+    stop("invalid")
+  }
+  if (x[1]==x[5]) {
+    hand="Yahtzee"
+  } else if (x[1]==x[4] | x[2]==x[5]) {
+    hand="4ofKind"
+  } else if (x[1] == x[3] && x[4] != x[5] || x[2] == x[4] || x[3] == x[5] && x[1] != x[2]) {
+    hand = "3ofKind"
+  } else if (x[1] == x[3] && x[4] == x[5] || x[3] == x[5] && x[1] == x[2]) {
+    hand = "FullHouse"
+  } else if(x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 &&x[4]==x[5]-1) {
+     hand<-"LargeStraight"
+   } else if (x[1]==x[2]-1 && x[2]==x[3]-1 && x[3]==x[4]-1 ||
+              x[2]==x[3]-1 && x[3]==x[4]-1 && x[4]==x[5]-1) {
+     hand<-"SmallStraight"
+  } else 
+   hand<-"Chance"
+  return(hand)
+}
 
 ```
 
@@ -196,7 +203,17 @@ Small Straight    .1235
 Chance            .6326
 -------------------------------------------------------
 
-
+```{r}
+x=matrix(nrow=100000,ncol=5, sample(1:6, 500000,T))
+hands=apply(x, 1, classify)
+mean(hands=="Yahtzee")
+mean(hands=="4ofKind")
+mean(hands=="3ofKind")
+mean(hands=="FullHouse")
+mean(hands=="LargeStraight")
+mean(hands=="SmallStraight")
+mean(hands=="Chance")
+```
 
 ## Part II: PHP 2560 Only
 
