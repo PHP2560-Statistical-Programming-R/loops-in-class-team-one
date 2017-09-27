@@ -72,22 +72,23 @@ We will need to sort this. The following function is called a *Bubble Sort*. Com
 
 ```{r}
 bubble_sort = function(vec) {
-    no_passes = 0
-    while(1) {
-        no_swaps = 0
-        for (j in 1 : (length(vec) - 1 - no_passes)) {
-            if (vec[j] > vec[j + 1]) {
-                s = vec[j]
-                vec[j] = vec[j+1]
-                vec[j+1] = s
-                no_swaps = no_swaps + 1
+    no_passes = 0 #count how many times we passed through the vector
+    while(1) { #continue forever unless "broken"
+        no_swaps = 0 #count how many numbers we have swapped in this pass
+        for (j in 1 : (length(vec) - 1 - no_passes)) { #iterate through all unsorted elements
+            if (vec[j] > vec[j + 1]) { #if this element is bigger than the one adjacent, SWAP:
+                s = vec[j] #hold the larger element in s
+                vec[j] = vec[j+1] #swap the smaller element into s's place
+                vec[j+1] = s #put the larger element into the other place
+                no_swaps = no_swaps + 1 #increment num swaps
             }
         }
-        no_passes = no_passes + 1
-        if(no_swaps == 0) break
+        no_passes = no_passes + 1 #we have passed through the vector once
+        if(no_swaps == 0) break #if no swaps, the vector must be all sorted
     }
     vec
 }
+```
 ```
 
 ### Problem 3: Applying the Sort with dice rolls
